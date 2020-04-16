@@ -1,0 +1,15 @@
+1.导入地图，加载Skywars插件
+
+2.使用op账号完成 /skywars 地图配置
+
+在config.yml中修改一些细节
+
+3.通过bukkit的/gamerule 关闭成就和死亡GUI
+
+在server.properties中设置spawn-protection=0 关闭生物，怪物，npc生成
+
+将max-world-size与max-build-height设置地与地图配置相同
+
+分别在server.properties和bukkit.yml中关闭地狱和末地
+
+4.重载服务器

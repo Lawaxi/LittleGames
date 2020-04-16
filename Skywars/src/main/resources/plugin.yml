@@ -1,0 +1,10 @@
+name: SkyWars
+version: 1.0.2
+main: net.lawaxi.mcgame.skywars.Skywars
+api-version: 1.13
+prefix: SKYWARS
+commands:
+  skywars:
+    permission: skywars.edit
+    description: 地图编辑
+    usage: /skywars help

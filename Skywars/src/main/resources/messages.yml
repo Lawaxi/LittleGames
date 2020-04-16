@@ -1,0 +1,20 @@
+scoreboard:
+  title: §b空岛战争
+  lobby:
+    player: §e人数：§a%now%§f/§a%max%
+    time: §e游戏将在 §a%sec% §e秒后开始
+    time1: §e等待其他玩家加入...
+    map: §e地图：%map%
+    mode: §e模式：%mode%
+    info: §amc.lawaxi.net
+  ingame:
+    player: §e剩余玩家：§a%now%
+    kills: §e击杀：§c%kills%
+    map: §e地图：%map%
+    mode: §e模式：%mode%
+    info: §amc.lawaxi.net
+lobby:
+  wait: §e游戏将在 §b%time% §e秒后开始
+  wait_last5sec: §e游戏将在 §c%time% §e秒后开始
+ingame:
+  end: §e游戏结束，将在 §f%time% §e秒后重置
