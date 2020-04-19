@@ -1,0 +1,47 @@
+scoreboard:
+  title: §b§l空岛战争
+  lobby:
+    player: §e人数：§a%now%§f/§a%max%
+    time: §e游戏将在 §a%sec% §e秒后开始
+    time1: §e等待其他玩家加入...
+    map: §e地图：§a%map%
+    mode: §e模式：§a%mode%
+    info: §amc.lawaxi.net
+  ingame:
+    player: §e剩余玩家：§a%now%
+    kills: §e击杀：§c%kills%
+    map: §e地图：%map%
+    mode: §e模式：%mode%
+    info: §amc.lawaxi.net
+lobby:
+  wait:
+    msg: §e游戏将在 §b%time% §e秒后开始
+    msg5sec: §e游戏将在 §c%time% §e秒后开始
+    addition1: §c人数不足最少人数，计时取消！
+    addition2: §6人数已满，等待时间缩短！
+    title: §c%time%
+    sub: §e请做好准备！
+ingame:
+  join:
+    full:
+      title: §7游戏人数已满
+      sub: §f您将成为旁观者观看游戏
+    already:
+      title: §7游戏已经开始
+      sub: §f您将成为旁观者观看游戏
+  end: §6游戏结束！%winner%
+  winner: §6获胜者是 §e%player%
+  winner1: §6没有获胜者
+  reset: §c将在 §4%time% §c秒后重置
+  dead:
+    title: §c你死了！
+    sub: §7您将成为旁观者继续观看游戏
+  end1:
+    title: §c游戏结束
+    sub: §c您不是胜利者
+  end2:
+    title: §a恭喜获胜
+    sub: §2您赢得了比赛
+server:
+  stop: §4服务器已关闭
+  reload: §6游戏已结束，地图正在重置

@@ -109,10 +109,10 @@ public class Scoreboard {
             {
 
                 ingame.get(Bukkit.getOnlinePlayers().toArray()[i]).getScoreboard().resetScores(Messages.read("scoreboard.ingame.player").toString().replace("%now%",String.valueOf(survivalplayers1)));
-                survivalplayers1=survivalplayers;
-                ingame.get(Bukkit.getOnlinePlayers().toArray()[i]).getScore(Messages.read("scoreboard.ingame.player").toString().replace("%now%",String.valueOf(survivalplayers1))).setScore(8);
+                ingame.get(Bukkit.getOnlinePlayers().toArray()[i]).getScore(Messages.read("scoreboard.ingame.player").toString().replace("%now%",String.valueOf(survivalplayers))).setScore(8);
 
             }
+            survivalplayers1=survivalplayers;
         }
         
         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -123,7 +123,6 @@ public class Scoreboard {
                 kills1.replace(player,kills.get(player));
                 ingame.get(player).getScore(Messages.read("scoreboard.ingame.kills").toString().replace("%kills%",String.valueOf(kills1.get(player)))).setScore(4);
             }
-            break;
         }
     }
 

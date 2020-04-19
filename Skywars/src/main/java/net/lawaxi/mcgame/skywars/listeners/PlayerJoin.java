@@ -26,7 +26,6 @@ public class PlayerJoin implements Listener {
             event.getPlayer().setScoreboard(Scoreboard.lobby.getScoreboard());
         }
 
-
         Player.loadPlayer(event.getPlayer());
         Scoreboard.reloadScoreboard();
     }

@@ -38,6 +38,7 @@ public final class Skywars extends JavaPlugin {
     public static Map<Location,Material> preblocks1 = new HashMap<>();
     public static Map<Location,BlockData> preblocks2 = new HashMap<>();
 
+    public static ArrayList<ArrayList<ItemStack>> chests ;
     @Override
     public void onEnable() {
 
@@ -65,12 +66,7 @@ public final class Skywars extends JavaPlugin {
         world=getServer().getWorld(Config.read("map.limit.world").toString());
 
         //1.箱子预设读取
-        Game.chestitems = new ArrayList<>();
-        List<ArrayList<ItemStack>> chests = (List<ArrayList<ItemStack>>) Config.readList("ingame.chests");
-        for(ArrayList<ItemStack> chest : chests)
-        {
-            Game.chestitems.add(chest.toArray(new ItemStack[27]));
-        }
+        chests = (ArrayList<ArrayList<ItemStack>>) Config.read("ingame.chests");
 
         //2.玩家出生点读取
         for(int i=1;i<=(int)Config.read("lobby.amount");i++)
@@ -274,7 +270,7 @@ public final class Skywars extends JavaPlugin {
                                             else
                                                 chests= (ArrayList<ItemStack[]>)Config.read("ingame.chests");
 
-                                            chests.add(((Chest)block.getState()).getBlockInventory().getStorageContents());
+                                            chests.add(((Chest)block.getState()).getBlockInventory().getContents());
 
 
                                             if(Config.write("ingame.chests",chests))
@@ -285,14 +281,10 @@ public final class Skywars extends JavaPlugin {
                                             {
                                                 sender.sendMessage("§c新箱子添加失败");
                                             }
-
-                                            break;
                                         }
                                     }
                                 }
                             }
-
-                            sender.sendMessage("§c没有在您附件发现箱子");
                         }
                         else
                         {

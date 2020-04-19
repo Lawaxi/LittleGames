@@ -17,7 +17,6 @@ import static net.lawaxi.mcgame.skywars.utils.Scoreboard.startScoreboard;
 public class Game {
 
     public static BukkitTask gamewaittask;
-    public  static ArrayList<ItemStack[]> chestitems;
     public static void startGame(){
 
         Scoreboard.survivalplayers=Scoreboard.player;

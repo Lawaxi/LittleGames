@@ -65,14 +65,6 @@ public class Config {
 
     }
 
-    public static List<?> readList(String key)
-    {
-        if(Config.contains(key))
-            return Config.getList(key);
-        else
-            return null;
-    }
-
     public static Object read(String key)
     {
         if(Config.contains(key))

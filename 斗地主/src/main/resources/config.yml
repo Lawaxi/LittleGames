@@ -1,0 +1,180 @@
+messages:
+  already: §c游戏已经开始了！
+  notenough: §c人数不足3人，无法开始.
+  startinfo:
+  - §6§m--------------------------------------------------
+  - §a§l游戏开始
+  - §2座位顺序为 §a%players%
+  - §6§m--------------------------------------------------
+  lcguititle: §9§l抢地主 §7(左键点击)
+  lordinfotitle: §9地主 %player%
+  lordinfosub: §b地主牌 %cards%
+  lordinfo: §9地主 %player% §b地主牌 %cards%
+  lordnotfound: §6没有人想成为地主，将在5秒后重新开局.
+  guititle: §6§l斗地主 §7(退出界面以出牌)
+  notdutytitle: §c比赛没有轮到您
+  #选完地主后的玩家提示 %player%可以添加颜色前缀
+  # 1代表农民玩家 2代表地主玩家
+  playerprefix1: §a%player%
+  playerprefix2: §9%player%
+  launchtitle: §6%player%
+  launchsub: §e%cards%
+  launch: '%player% §e%cards%'
+  win1title: §a农民胜利
+  win1sub:
+  win2title: §9地主获胜
+  win2sub:
+  win3title:
+  win3sub: §c游戏被强制结束
+  leftpre:
+  - §6§m--------------------------------------------------
+  - §a§l玩家剩余手牌
+  left:
+  - '%player% §2%cards%'
+  leftsuf:
+  - §6§m--------------------------------------------------
+items:
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: INK_SAC
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: '3'
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: RED_DYE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: '4'
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: GREEN_DYE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: '5'
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: LAPIS_LAZULI
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: '6'
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: PURPLE_DYE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: '7'
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: CYAN_DYE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: '8'
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: LIGHT_GRAY_DYE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: '9'
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: GRAY_DYE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: '10'
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: PINK_DYE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: J
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: LIME_DYE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: Q
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: YELLOW_DYE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: K
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: LIGHT_BLUE_DYE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: A
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: MAGENTA_DYE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: '2'
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: ORANGE_DYE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: §7小王
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: BONE_MEAL
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: §6大王
+lordchosing:
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: LIME_STAINED_GLASS_PANE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: §a不叫
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: YELLOW_STAINED_GLASS_PANE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: §e一分
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: ORANGE_STAINED_GLASS_PANE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: §6两分
+- ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: RED_STAINED_GLASS_PANE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: §c三分
+block:
+  ==: org.bukkit.inventory.ItemStack
+  v: 2230
+  type: REDSTONE_BLOCK
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: §a进入游戏
+    lore:
+    - §7(放置以进入)

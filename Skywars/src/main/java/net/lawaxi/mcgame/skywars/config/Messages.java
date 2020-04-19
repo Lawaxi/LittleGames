@@ -11,7 +11,7 @@ public class Messages {
 
     public static void loadConfig(){
 
-        chinese.set("scoreboard.title","§b空岛战争");
+        chinese.set("scoreboard.title","§b§l空岛战争");
         chinese.set("scoreboard.lobby.player","§e人数：§a%now%§f/§a%max%");
         chinese.set("scoreboard.lobby.time","§e游戏将在 §a%sec% §e秒后开始");
         chinese.set("scoreboard.lobby.time1","§e等待其他玩家加入...");

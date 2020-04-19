@@ -4,7 +4,6 @@ import net.lawaxi.mcgame.skywars.Skywars;
 import net.lawaxi.mcgame.skywars.config.Config;
 import net.lawaxi.mcgame.skywars.config.Messages;
 import net.lawaxi.mcgame.skywars.init.Game;
-import net.lawaxi.mcgame.skywars.init.Player;
 import net.lawaxi.mcgame.skywars.utils.GameState;
 import net.lawaxi.mcgame.skywars.utils.Scoreboard;
 import org.bukkit.Bukkit;
