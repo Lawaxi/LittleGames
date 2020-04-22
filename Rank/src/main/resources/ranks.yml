@@ -1,0 +1,19 @@
+types:
+  default:
+    list: §7[Player]%player%
+    chat: §7[Player]%player%§f
+  vip:
+    list: §a[VIP]%player%
+    chat: §a[VIP]%player%§f
+  mvp:
+    list: §6[MVP]%player%
+    chat: §6[MVP]%player%§f
+  youtube:
+    list: §e[YOUTUBE]%player%
+    chat: §e[YOUTUBE]%player%§f
+  admin:
+    list: §c[ADMIN]%player%
+    chat: §c[ADMIN]%player%§f
+  owner:
+    list: §4[OWNER]%player%
+    chat: §4[OWNER]%player%§f

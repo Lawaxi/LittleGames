@@ -1,0 +1,9 @@
+name: Rank
+version: ${project.version}
+main: net.lawaxi.rank.Rank
+api-version: 1.13
+commands:
+  setrank:
+    description: 设置等级
+    usage: /setrank Lawaxi vip
+    permission: rank.set
