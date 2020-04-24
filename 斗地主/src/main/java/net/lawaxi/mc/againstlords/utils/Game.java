@@ -1,7 +1,6 @@
 package net.lawaxi.mc.againstlords.utils;
 
 import net.lawaxi.mc.againstlords.AgainstLords;
-import net.lawaxi.rank.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -42,6 +41,7 @@ public class Game {
                 return false;
             }
         }
+        winner = player;
         return true;
     }
 
@@ -176,6 +176,7 @@ public class Game {
         GameGUI.createNewGAME();
     }
 
+    private static Player winner;
     public static void end(String title,String sub){
         AgainstLords.isInGame=false;
 
@@ -190,7 +191,7 @@ public class Game {
         {
             player1.sendTitle(title,sub,20,40,20);
 
-            if(!testdone(player1) && playeringame.contains(player1))
+            if(player1==winner && playeringame.contains(player1))
             {
                 HashMap<Integer,Integer> him = onhand.get(player1);
                 String forhim = " ";
@@ -212,23 +213,7 @@ public class Game {
                 }
 
                 player1.getInventory().clear();
-
-
-                //Rank奖励：lose
-                if(AgainstLords.useRank) {
-                    int exp = AgainstLords.config.getInt("levelreward.lose");
-                    if (exp != 0)
-                        utils.addExp(player1, exp);
-                }
             }
-            //Rank奖励：win
-            else if(AgainstLords.useRank && playeringame.contains(player1))
-            {
-                int exp =AgainstLords.config.getInt("levelreward.win");
-                if(exp!=0)
-                    utils.addExp(player1,exp);
-            }
-
         }
 
         //leftsuf
@@ -236,6 +221,23 @@ public class Game {
         for(int i=0;i<leftsuf.size();i++)
         {
             Bukkit.broadcastMessage(leftsuf.get(i));
+        }
+
+
+        //Rank游戏奖励
+        if(AgainstLords.useRank)
+        {
+            for(Player player : Bukkit.getOnlinePlayers())
+            {
+                int exp;
+                if(player==winner)
+                    exp = AgainstLords.config.getInt("levelreward.lose");
+                else
+                    exp =AgainstLords.config.getInt("levelreward.win");
+
+                if (exp != 0)
+                    utils.addExp(player, exp);
+            }
         }
     }
 

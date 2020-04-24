@@ -160,6 +160,7 @@ public final class Rank extends JavaPlugin {
             {
                 sender.sendMessage(config.getString("messages.inquirefailed").replace("%1%",player));
             }
+            return true;
         }
 
         return super.onCommand(sender, command, label, args);
