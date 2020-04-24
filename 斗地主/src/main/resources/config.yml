@@ -1,3 +1,6 @@
+levelreward: #配合Rank插件的经验奖励
+  win: 50
+  lose: 20
 messages:
   already: §c游戏已经开始了！
   notenough: §c人数不足3人，无法开始.

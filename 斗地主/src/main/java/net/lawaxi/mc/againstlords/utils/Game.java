@@ -1,16 +1,12 @@
 package net.lawaxi.mc.againstlords.utils;
 
 import net.lawaxi.mc.againstlords.AgainstLords;
+import net.lawaxi.rank.Rank;
 import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
-
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collection;
+import net.lawaxi.rank.utils;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -51,8 +47,8 @@ public class Game {
 
 
     private static HashMap<Integer,Integer> leftcards;
-    public static boolean start(){
-        if(Bukkit.getOnlinePlayers().size()>=3)
+    public static boolean start(boolean force){
+        if(Bukkit.getOnlinePlayers().size()>=3 || force)
         {
 
             AgainstLords.isInGame=true;
@@ -216,6 +212,21 @@ public class Game {
                 }
 
                 player1.getInventory().clear();
+
+
+                //Rank奖励：lose
+                if(AgainstLords.useRank) {
+                    int exp = AgainstLords.config.getInt("levelreward.lose");
+                    if (exp != 0)
+                        utils.addExp(player1, exp);
+                }
+            }
+            //Rank奖励：win
+            else if(AgainstLords.useRank && playeringame.contains(player1))
+            {
+                int exp =AgainstLords.config.getInt("levelreward.win");
+                if(exp!=0)
+                    utils.addExp(player1,exp);
             }
 
         }

@@ -122,6 +122,45 @@ public final class Rank extends JavaPlugin {
             }
 
         }
+        else if(command.getName().equals("addexp")){
+            if(args.length==2){
+
+                for(Player player: Bukkit.getOnlinePlayers())
+                {
+                    if(player.getName().equals(args[0]))
+                    {
+                        utils.addExp(player,Integer.valueOf(args[1]));
+                        return true;
+                    }
+                }
+                sender.sendMessage("§c玩家 "+args[0]+" 不在线!");
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if(command.getName().equals("level")){
+            String player;
+            if(args.length>0)
+                player = args[0];
+            else
+                player = sender.getName();
+
+            if(levels.contains("players."+player))
+            {
+                int exp = levels.getInt("players."+player);
+                sender.sendMessage(config.getString("messages.inquire")
+                        .replace("%1%",player)
+                        .replace("%2%",String.valueOf(exp/Rank.levels.getInt("types.exp.each")))
+                        .replace("%3%",String.valueOf(exp)));
+            }
+            else
+            {
+                sender.sendMessage(config.getString("messages.inquirefailed").replace("%1%",player));
+            }
+        }
 
         return super.onCommand(sender, command, label, args);
     }

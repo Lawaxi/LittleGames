@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="net.lawaxi:rank:1.1.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/rank-1.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -91,7 +91,7 @@ public class LordChosingGUI {
                 new BukkitRunnable(){
                     @Override
                     public void run() {
-                        Game.start();
+                        Game.start(false);
                     }
                 }.runTaskLater(AgainstLords.instance,20*5);
             }

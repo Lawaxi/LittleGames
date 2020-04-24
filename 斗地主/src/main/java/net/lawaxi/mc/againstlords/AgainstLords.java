@@ -5,6 +5,7 @@ import net.lawaxi.mc.againstlords.lisener.InventoryClose;
 import net.lawaxi.mc.againstlords.lisener.InventoryClick;
 import net.lawaxi.mc.againstlords.lisener.PlayerDropItem;
 import net.lawaxi.mc.againstlords.utils.*;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -18,13 +19,24 @@ import java.util.HashMap;
 
 public final class AgainstLords extends JavaPlugin {
 
-    private static FileConfiguration config;
+    public static FileConfiguration config;
 
     public static boolean isInGame = false;
     public static AgainstLords instance;
 
+    public static boolean useRank = false;
+
     @Override
     public void onEnable() {
+
+        //1.2.0更新前，Rank插件制作完毕，联动
+        if(Bukkit.getPluginManager().getPlugin("Rank")!=null)
+        {
+            useRank=true;
+            getLogger().info("成功连接 Rank 插件");
+        }
+        else
+            getLogger().info("您没有安装 Rank 插件，将不会有结束奖励");
 
         instance= this;
 
@@ -174,7 +186,7 @@ public final class AgainstLords extends JavaPlugin {
                     new BukkitRunnable(){
                         @Override
                         public void run() {
-                            if(!Game.start())
+                            if(!Game.start(!(sender instanceof Player)))
                             {
                                 sender.sendMessage(getMessages("notenough"));
                             }

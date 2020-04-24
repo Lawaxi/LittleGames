@@ -1,10 +1,11 @@
 name: AgainstLords
-version: 1.1.0
+version: 1.2.0
 main: net.lawaxi.mc.againstlords.AgainstLords
 api-version: 1.13
 prefix: 斗地主
 authors: [Lawaxi]
 description: 斗地主小游戏 纯娱乐
+softdepend: [Rank]
 commands:
   al:
     permission: al.edit
