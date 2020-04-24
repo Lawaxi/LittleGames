@@ -1,1 +1,6 @@
 #Rank插件 配置文件
+chat:
+  common: "%level% %player2%§7: %message%"
+  shout: "§6[喊话] %level% %player2%§6: %message%"
+  shoutlevel: mvp
+  cannotshout: "§6您的等级不足 %rank% §6，不能喊话."

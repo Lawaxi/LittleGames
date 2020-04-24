@@ -1,19 +1,31 @@
 types:
   default:
-    list: §7[Player]%player%
-    chat: §7[Player]%player%§f
+    level: 0
+    name: §7默认
+    list: §7%player%
+    chat: §7%player%
   vip:
-    list: §a[VIP]%player%
-    chat: §a[VIP]%player%§f
+    level: 1
+    name: §aVIP
+    list: §a[VIP] %player%
+    chat: §a[VIP] %player%
   mvp:
-    list: §6[MVP]%player%
-    chat: §6[MVP]%player%§f
-  youtube:
-    list: §e[YOUTUBE]%player%
-    chat: §e[YOUTUBE]%player%§f
+    level: 2
+    name: §6MVP
+    list: §6[MVP] %player%
+    chat: §6[MVP] %player%
+  helper:
+    level: 2
+    name: §eYOUTUBE
+    list: §9[HELPER] %player%
+    chat: §9[HELPER] %player%
   admin:
-    list: §c[ADMIN]%player%
-    chat: §c[ADMIN]%player%§f
+    level: 3
+    name: §cADMIN
+    list: §c[ADMIN] %player%
+    chat: §c[ADMIN] %player%
   owner:
-    list: §4[OWNER]%player%
-    chat: §4[OWNER]%player%§f
+    level: 4
+    name: §4OWNER
+    list: §4[OWNER] %player%
+    chat: §4[OWNER] %player%
