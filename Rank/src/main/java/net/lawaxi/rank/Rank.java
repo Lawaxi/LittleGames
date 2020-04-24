@@ -1,7 +1,10 @@
 package net.lawaxi.rank;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Server;
+import org.bukkit.block.CommandBlock;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -10,7 +13,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.FileUtil;
 
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
@@ -24,11 +29,13 @@ public final class Rank extends JavaPlugin {
     private static HashMap<Player,String> playerranks = new HashMap<>();
 
     public static Logger logger;
+    public static Server server;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
         logger = getLogger();
+        server = getServer();
 
         //注册事件
         getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
@@ -95,7 +102,6 @@ public final class Rank extends JavaPlugin {
 
         }
         levels = YamlConfiguration.loadConfiguration(level);
-
     }
 
     @Override
@@ -124,22 +130,16 @@ public final class Rank extends JavaPlugin {
         }
         else if(command.getName().equals("addexp")){
             if(args.length==2){
-
-                for(Player player: Bukkit.getOnlinePlayers())
-                {
-                    if(player.getName().equals(args[0]))
-                    {
-                        utils.addExp(player,Integer.valueOf(args[1]));
-                        return true;
-                    }
+                Player player = server.getPlayer(args[0]);
+                if(player!=null) {
+                    utils.addExp(player, Integer.valueOf(args[1]));
                 }
-                sender.sendMessage("§c玩家 "+args[0]+" 不在线!");
+                else {
+                    sender.sendMessage("§c玩家 " + args[0] + " 不在线!");
+                }
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
         else if(command.getName().equals("level")){
             String player;

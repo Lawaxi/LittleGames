@@ -1,7 +1,9 @@
 name: Rank
-version: 1.1.1
+version: 1.1.2
 main: net.lawaxi.rank.Rank
-api-version: 1.13
+prefix: Rank
+authors: [Lawaxi]
+description: Rank1.12
 commands:
   setrank:
     description: 设置等级

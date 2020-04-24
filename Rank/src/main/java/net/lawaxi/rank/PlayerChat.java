@@ -1,7 +1,6 @@
 package net.lawaxi.rank;
 
 import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,14 +13,21 @@ public class PlayerChat implements Listener {
    public static HashMap<Player,String> level = new HashMap<>();
    public static HashMap<Player,Boolean> canshout = new HashMap<>();
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onPlayerChat(AsyncPlayerChatEvent event)
     {
+        event.setCancelled(true);
         if(event.getMessage().substring(0,1).equals("@"))
         {
             if(canshout.get(event.getPlayer())) {
                 //Shout
-                Bukkit.broadcastMessage(ShoutMessage(event.getPlayer(),event.getMessage().substring(1)));
+                try {
+                    Bukkit.broadcastMessage(ShoutMessage(event.getPlayer(), event.getMessage().substring(1)));
+                }
+                catch (IllegalStateException e)
+                {
+                    return;
+                }
             }
             else {
                 event.getPlayer().sendMessage(Rank.config.get("chat.cannotshout").toString()
@@ -30,10 +36,14 @@ public class PlayerChat implements Listener {
         }
         else {
             //Common
-            Bukkit.broadcastMessage(CommonMessage(event.getPlayer(),event.getMessage()));
+            try {
+                Bukkit.broadcastMessage(CommonMessage(event.getPlayer(), event.getMessage()));
+            }
+            catch (IllegalStateException e)
+            {
+                return;
+            }
         }
-
-        event.setCancelled(true);
     }
 
 
