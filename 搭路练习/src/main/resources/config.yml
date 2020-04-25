@@ -1,0 +1,32 @@
+block:
+  start: EMERALD_BLOCK
+  end: REDSTONE_BLOCK
+  return: LAPIS_BLOCK
+  teleport: BEACON
+map:
+  reward:
+    finish: 10
+    kill: 5
+messages:
+  start:
+    title: ''
+    sub: §a出生点设置在 (§2%x%§a,§2%y%§a,§2%z%§a)
+  finish:
+    title: §6§l恭喜
+    sub: ''
+  kill:
+    title: ''
+    sub: §6你杀死了%player%
+  damaged1:
+    title: ''
+    sub: §c你受到了§4 %n%§c 点伤害
+  damaged2:
+    title: ''
+    sub: §c致命伤害！
+  speed:
+    title: ''
+    sub: §b%n% 方块/秒
+blockskin:
+  '0': SANDSTONE
+  '10': WOOL
+  '20': WOOL:8

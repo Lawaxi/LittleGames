@@ -1,0 +1,106 @@
+[16:52:28] [Server thread/INFO]: Starting minecraft server version 1.12.2
+[16:52:28] [Server thread/INFO]: Loading properties
+[16:52:28] [Server thread/INFO]: Default game type: SURVIVAL
+[16:52:28] [Server thread/INFO]: This server is running Paper version git-Paper-1618 (MC: 1.12.2) (Implementing API version 1.12.2-R0.1-SNAPSHOT)
+[16:52:28] [Server thread/INFO]: Debug logging is disabled
+[16:52:28] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[16:52:28] [Server thread/INFO]: Using 4 threads for Netty based IO
+[16:52:28] [Server thread/INFO]: Generating keypair
+[16:52:28] [Server thread/INFO]: Starting Minecraft server on *:10007
+[16:52:28] [Server thread/INFO]: Using default channel type
+[16:52:29] [Server thread/INFO]: Set PluginClassLoader as parallel capable
+[16:52:29] [Server thread/INFO]: [ViaVersion] Loading ViaVersion v2.2.3
+[16:52:29] [Server thread/INFO]: [ViaVersion] ViaVersion 2.2.3 is now loaded, injecting!
+[16:52:29] [Server thread/INFO]: [ViaVersion] Loading 1.12.2 -> 1.13 block mapping...
+[16:52:30] [Server thread/INFO]: [ViaVersion] Loading 1.12.2 -> 1.13 item mapping...
+[16:52:30] [Server thread/INFO]: [ViaVersion] Loading new 1.13 tags...
+[16:52:30] [Server thread/INFO]: [ViaVersion] Loading 1.12.2 -> 1.13 enchantment mapping...
+[16:52:30] [Server thread/INFO]: [ViaVersion] Loading 1.12.2 -> 1.13 sound mapping...
+[16:52:30] [Server thread/INFO]: [ViaVersion] Loading translation mapping
+[16:52:30] [Server thread/INFO]: [ViaVersion] Loading 1.13.2 -> 1.14 blockstate mapping...
+[16:52:30] [Server thread/INFO]: [ViaVersion] Loading 1.13.2 -> 1.14 block mapping...
+[16:52:30] [Server thread/INFO]: [ViaVersion] Loading 1.13.2 -> 1.14 item mapping...
+[16:52:30] [Server thread/INFO]: [ViaVersion] Loading 1.13.2 -> 1.14 sound mapping...
+[16:52:30] [Server thread/INFO]: [ViaVersion] Loading 1.14 blockstates...
+[16:52:30] [Server thread/INFO]: [ViaVersion] Loading 1.14 heightmap data...
+[16:52:30] [Server thread/INFO]: [ViaVersion] Loading 1.14.4 -> 1.15 blockstate mapping...
+[16:52:32] [Server thread/INFO]: [ViaVersion] Loading 1.14.4 -> 1.15 block mapping...
+[16:52:32] [Server thread/INFO]: [ViaVersion] Loading 1.14.4 -> 1.15 item mapping...
+[16:52:32] [Server thread/INFO]: [ViaVersion] Loading 1.14.4 -> 1.15 sound mapping...
+[16:52:32] [Server thread/INFO]: [Rank] Loading Rank v1.1.2
+[16:52:32] [Server thread/INFO]: [BridgePractice] Loading BridgePractice v1.0.3
+[16:52:32] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[16:52:32] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[16:52:32] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[16:52:32] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[16:52:32] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[16:52:32] [Server thread/INFO]: **** Beginning UUID conversion, this may take A LONG time ****
+[16:52:32] [Server thread/INFO]: Preparing level "world"
+[16:52:32] [Server thread/INFO]: -------- World Settings For [world] --------
+[16:52:32] [Server thread/INFO]: View Distance: 10
+[16:52:32] [Server thread/INFO]: Item Despawn Rate: 6000
+[16:52:32] [Server thread/INFO]: Item Merge Radius: 2.5
+[16:52:32] [Server thread/INFO]: Allow Zombie Pigmen to spawn from portal blocks: true
+[16:52:32] [Server thread/INFO]: Zombie Aggressive Towards Villager: true
+[16:52:32] [Server thread/INFO]: Arrow Despawn Rate: 1200
+[16:52:32] [Server thread/INFO]: Nerfing mobs spawned from spawners: false
+[16:52:32] [Server thread/INFO]: Experience Merge Radius: 3.0
+[16:52:32] [Server thread/INFO]: Random Lighting Updates: false
+[16:52:32] [Server thread/INFO]: Mob Spawn Range: 4
+[16:52:32] [Server thread/INFO]: Entity Activation Range: An 32 / Mo 32 / Mi 16 / Tiv true
+[16:52:32] [Server thread/INFO]: Entity Tracking Range: Pl 48 / An 48 / Mo 48 / Mi 32 / Other 64
+[16:52:32] [Server thread/INFO]: Structure Info Saving: true
+[16:52:32] [Server thread/INFO]: Hopper Transfer: 8 Hopper Check: 1 Hopper Amount: 1
+[16:52:32] [Server thread/INFO]: Cactus Growth Modifier: 100%
+[16:52:32] [Server thread/INFO]: Cane Growth Modifier: 100%
+[16:52:32] [Server thread/INFO]: Melon Growth Modifier: 100%
+[16:52:32] [Server thread/INFO]: Mushroom Growth Modifier: 100%
+[16:52:32] [Server thread/INFO]: Pumpkin Growth Modifier: 100%
+[16:52:32] [Server thread/INFO]: Sapling Growth Modifier: 100%
+[16:52:32] [Server thread/INFO]: Wheat Growth Modifier: 100%
+[16:52:32] [Server thread/INFO]: NetherWart Growth Modifier: 100%
+[16:52:32] [Server thread/INFO]: Vine Growth Modifier: 100%
+[16:52:32] [Server thread/INFO]: Cocoa Growth Modifier: 100%
+[16:52:32] [Server thread/INFO]: Tile Max Tick Time: 50ms Entity max Tick Time: 50ms
+[16:52:32] [Server thread/INFO]: Max TNT Explosions: 100
+[16:52:32] [Server thread/INFO]: Custom Map Seeds:  Village: 10387312 Feature: 14357617 Monument: 10387313 Slime: 987234911
+[16:52:32] [Server thread/INFO]: Preparing start region for level 0 (Seed: 1229955612274959447)
+[16:52:33] [Server thread/INFO]: [ViaVersion] Enabling ViaVersion v2.2.3
+[16:52:33] [Server thread/INFO]: [Rank] Enabling Rank v1.1.2
+[16:52:33] [Server thread/INFO]: [BridgePractice] Enabling BridgePractice v1.0.3
+[16:52:33] [Server thread/INFO]: Done (1.017s)! For help, type "help" or "?"
+[16:52:33] [Server thread/INFO]: Timings Reset
+[16:52:33] [Server thread/INFO]: [ViaVersion] ViaVersion detected server version: 1.12.2(340)
+[16:52:36] [User Authenticator #1/INFO]: UUID of player Lawaxi is f2ad39ec-22c9-34f7-86a1-367d73dd1cf5
+[16:52:36] [Server thread/INFO]: Lawaxi[/127.0.0.1:59930] logged in with entity id 1 at ([world]12.0, 4.0, 12.0)
+[16:52:43] [Server thread/INFO]: Lawaxi lost connection: Disconnected
+[16:52:43] [Server thread/INFO]: Lawaxi left the game
+[16:52:45] [User Authenticator #1/INFO]: UUID of player Lawaxi is f2ad39ec-22c9-34f7-86a1-367d73dd1cf5
+[16:52:45] [Server thread/INFO]: Lawaxi[/127.0.0.1:59939] logged in with entity id 9 at ([world]12.0, 4.0, 12.0)
+[16:52:55] [Server thread/WARN]: Lawaxi moved too quickly! -10.58528962281267,69.37727736727851,3.243093671113691
+[16:53:07] [Server thread/WARN]: Lawaxi moved too quickly! -25.63479682957246,71.37727736727851,-0.2921375394375261
+[16:53:14] [Server thread/INFO]: Opped lawaxi
+[16:53:17] [Server thread/INFO]: Lawaxi issued server command: /gamemode creative
+[16:53:17] [Server thread/INFO]: [Lawaxi: Set own game mode to Creative Mode]
+[16:53:29] [Server thread/WARN]: Lawaxi moved too quickly! -30.524548392472468,0.0,0.04092338031099274
+[16:54:06] [Server thread/INFO]: Lawaxi issued server command: /summon cow
+[16:54:06] [Server thread/INFO]: [Lawaxi: Object successfully summoned]
+[16:54:38] [Server thread/INFO]: Lawaxi lost connection: Disconnected
+[16:54:38] [Server thread/INFO]: Lawaxi left the game
+[16:55:06] [User Authenticator #2/INFO]: UUID of player Lawaxi is f2ad39ec-22c9-34f7-86a1-367d73dd1cf5
+[16:55:07] [Server thread/INFO]: Lawaxi[/127.0.0.1:59969] logged in with entity id 31 at ([world]12.0, 4.0, 12.0)
+[16:55:27] [Server thread/INFO]: Lawaxi issued server command: /gamemode survival
+[16:55:27] [Server thread/INFO]: [Lawaxi: Set own game mode to Survival Mode]
+[16:55:59] [Server thread/WARN]: Lawaxi moved too quickly! -30.515758269586257,0.0,0.5227910332839372
+[16:56:10] [Async Chat Thread - #0/INFO]: [0?] Lawaxi: 1
+[16:56:28] [Server thread/INFO]: Lawaxi lost connection: Disconnected
+[16:56:29] [Server thread/INFO]: Lawaxi left the game
+[17:01:56] [Server thread/INFO]: Stopping the server
+[17:01:56] [Server thread/INFO]: Stopping server
+[17:01:56] [Server thread/INFO]: [BridgePractice] Disabling BridgePractice v1.0.3
+[17:01:56] [Server thread/INFO]: [Rank] Disabling Rank v1.1.2
+[17:01:56] [Server thread/INFO]: [ViaVersion] Disabling ViaVersion v2.2.3
+[17:01:56] [Server thread/INFO]: [ViaVersion] ViaVersion is disabling, if this is a reload and you experience issues consider rebooting.
+[17:01:56] [Server thread/INFO]: Saving players
+[17:01:56] [Server thread/INFO]: Saving worlds
+[17:01:56] [Server thread/INFO]: Saving chunks for level 'world'/overworld
