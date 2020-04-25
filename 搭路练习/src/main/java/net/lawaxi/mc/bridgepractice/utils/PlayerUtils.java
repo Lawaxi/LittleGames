@@ -28,7 +28,7 @@ public class PlayerUtils {
     }
 
     public static void killing(Player killer,Player player){
-        player.sendTitle(
+        killer.sendTitle(
                 Bridgepractice.config.getString("messages.kill.title")
                         .replace("%player%",player.getDisplayName()),
                 Bridgepractice.config.getString("messages.kill.sub")

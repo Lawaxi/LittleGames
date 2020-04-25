@@ -2,6 +2,7 @@ package net.lawaxi.mc.bridgepractice.listeners;
 
 import net.lawaxi.mc.bridgepractice.Bridgepractice;
 import net.lawaxi.mc.bridgepractice.utils.PlayerUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -9,6 +10,7 @@ import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
@@ -16,6 +18,7 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class antimc implements Listener {
 
@@ -63,14 +66,48 @@ public class antimc implements Listener {
                     @Override
                     public void run() {
                         e.getEntity().teleport(PlayerUtils.location.get(e.getEntity()));
+                        if(maybeKiller.containsKey(e.getEntity()))
+                        {
+                            Bukkit.broadcastMessage(Bridgepractice.config.getString("messages.dead2")
+                            .replace("%player%",((Player) e.getEntity()).getDisplayName())
+                            .replace("%killer%",maybeKiller.get(e.getEntity()).getDisplayName()));
+
+                            PlayerUtils.killing(maybeKiller.get(e.getEntity()),(Player) e.getEntity());
+                        }
+                        else
+                        {
+                            Bukkit.broadcastMessage(Bridgepractice.config.getString("messages.dead1")
+                                    .replace("%player%",((Player) e.getEntity()).getDisplayName()));
+                        }
+
                         PlayerUtils.clearBlocks((ArrayList<Location>)PlayerUtils.playersblock.get(e.getEntity()).clone());
                         this.cancel();
                     }
                 }.runTask(Bridgepractice.instance);
 
             }
-            e.setCancelled(true);
+            e.setDamage(0.1);
         }
     }
 
+    public static HashMap<Player,Player> maybeKiller = new HashMap<>();
+    @EventHandler
+    private static void onDamaged2(EntityDamageByEntityEvent e){
+        if(e.getDamager() instanceof Player && e.getEntity() instanceof Player){
+
+            //记录被谁推下虚空
+            if(maybeKiller.containsKey(e.getEntity()))
+                maybeKiller.replace((Player)e.getEntity(),(Player) e.getDamager());
+            else
+                maybeKiller.put((Player)e.getEntity(),(Player) e.getDamager());
+
+            //过10秒自动清除
+            new BukkitRunnable(){
+                @Override
+                public void run() {
+                    maybeKiller.remove(e.getEntity());
+                }
+            }.runTaskLater(Bridgepractice.instance,200);
+        }
+    }
 }

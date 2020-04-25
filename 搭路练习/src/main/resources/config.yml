@@ -26,6 +26,8 @@ messages:
   speed:
     title: ''
     sub: §b%n% 方块/秒
+  dead1: "%player% §f掉入虚空"
+  dead2: "%player% §f被 %killer% §f推下了虚空"
 blockskin:
   '0': SANDSTONE
   '10': WOOL

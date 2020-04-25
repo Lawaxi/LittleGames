@@ -4,6 +4,7 @@ import net.lawaxi.mc.bridgepractice.Bridgepractice;
 import net.lawaxi.mc.bridgepractice.utils.PlayerUtils;
 import net.lawaxi.mc.bridgepractice.utils.onBlock;
 import net.lawaxi.mc.bridgepractice.utils.utils;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -50,6 +51,16 @@ public class others implements Listener {
                 ArrayList<Location> list = (ArrayList<Location>)PlayerUtils.playersblock.get(e.getPlayer()).clone();
                 PlayerUtils.playersblock.remove(e.getPlayer());
                 PlayerUtils.location.remove(e.getPlayer());
+
+                //清除杀人记录
+                for(Player player: Bukkit.getOnlinePlayers()){
+                    if(antimc.maybeKiller.containsKey(player))
+                    {
+                        if(antimc.maybeKiller.get(player).equals(e.getPlayer()))
+                            antimc.maybeKiller.remove(player);
+                    }
+                }
+
                 PlayerUtils.clearBlocks(list);
 
                 this.cancel();
