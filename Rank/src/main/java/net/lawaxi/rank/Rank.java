@@ -26,7 +26,7 @@ public final class Rank extends JavaPlugin {
     public static FileConfiguration levels;
     private static File rank;
     private static File level;
-    private static HashMap<Player,String> playerranks = new HashMap<>();
+    public static HashMap<Player,String> playerranks = new HashMap<>();
 
     public static Logger logger;
     public static Server server;

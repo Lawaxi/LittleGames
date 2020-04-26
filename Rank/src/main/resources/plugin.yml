@@ -1,5 +1,5 @@
 name: Rank
-version: 1.1.2
+version: 1.2.0
 main: net.lawaxi.rank.Rank
 prefix: Rank
 authors: [Lawaxi]

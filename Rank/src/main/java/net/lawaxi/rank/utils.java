@@ -1,9 +1,15 @@
 package net.lawaxi.rank;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class utils {
 
@@ -61,5 +67,24 @@ public class utils {
             b.add(member.replace(target,replacement));
         }
         return b;
+    }
+
+
+    public static void reloadScoreboard(Player player){
+        ScoreboardManager manager = Bukkit.getScoreboardManager();
+        Scoreboard scoreboard = manager.getNewScoreboard();
+        Objective objective = scoreboard.registerNewObjective("sb", "dummy");
+        objective.setDisplayName(Rank.config.getString("scoreboard.title"));
+        objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+
+        ArrayList<String> a = (ArrayList<String> ) Rank.config.getList("scoreboard.list");
+        for(String b : a)
+        {
+            objective.getScore(b
+                .replace("%rank%",Rank.ranks.getString("types."+Rank.playerranks.get(player)+".name"))
+                .replace("%level%",String.valueOf(getLevel(player)))
+            ).setScore(a.size()-a.indexOf(b));
+        }
+        player.setScoreboard(scoreboard);
     }
 }

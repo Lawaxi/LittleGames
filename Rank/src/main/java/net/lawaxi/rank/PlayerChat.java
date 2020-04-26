@@ -22,7 +22,8 @@ public class PlayerChat implements Listener {
             if(canshout.get(event.getPlayer())) {
                 //Shout
                 try {
-                    Bukkit.broadcastMessage(ShoutMessage(event.getPlayer(), event.getMessage().substring(1)));
+                    for(Player player:Bukkit.getOnlinePlayers())
+                    player.sendMessage(ShoutMessage(event.getPlayer(), event.getMessage().substring(1)));
                 }
                 catch (IllegalStateException e)
                 {
@@ -37,7 +38,8 @@ public class PlayerChat implements Listener {
         else {
             //Common
             try {
-                Bukkit.broadcastMessage(CommonMessage(event.getPlayer(), event.getMessage()));
+                for(Player player:Bukkit.getOnlinePlayers())
+                    player.sendMessage(CommonMessage(event.getPlayer(), event.getMessage()));
             }
             catch (IllegalStateException e)
             {

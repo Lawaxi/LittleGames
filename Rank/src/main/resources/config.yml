@@ -13,3 +13,13 @@ messages:
     - §a您已经满级，无法添加经验.
   inquire: §a玩家 %1% 当前等级 %2% §a(经验%3%).
   inquirefailed: §c玩家不存在!
+scoreboard:
+  title: §b搭路练习
+  list:
+    - '§1'
+    - '§f身份: %rank%'
+    - '§f等级:§a %level%'
+    - '§2'
+    - '§f当前服务器: §bxxx'
+    - '§3'
+    - '§emc.example.org'
