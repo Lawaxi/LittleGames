@@ -1,0 +1,5 @@
+name: BridgePracticeAddon
+version: 1.0.3
+main: net.lawaxi.mc.bpaddon.BridgePracticeAddon
+prefix: BridgePracticeAddon
+authors: [Lawaxi]
