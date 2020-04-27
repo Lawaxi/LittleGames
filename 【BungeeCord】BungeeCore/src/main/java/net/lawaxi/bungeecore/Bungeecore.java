@@ -1,5 +1,6 @@
 package net.lawaxi.bungeecore;
 
+import net.lawaxi.bungeecore.Commands.Lobby;
 import net.lawaxi.bungeecore.Party.PartyCommand;
 import net.lawaxi.bungeecore.Party.PartyUtils;
 import net.lawaxi.bungeecore.Player.Message;
@@ -20,6 +21,7 @@ public final class Bungeecore extends Plugin implements Listener {
         // Plugin startup logic
 
         this.getProxy().getPluginManager().registerCommand(this, new PartyCommand(this));
+        this.getProxy().getPluginManager().registerCommand(this, new Lobby());
         this.getProxy().getPluginManager().registerListener(this, this);
     }
 
@@ -55,7 +57,7 @@ public final class Bungeecore extends Plugin implements Listener {
                 for (ProxiedPlayer player : PartyUtils.playersParty.get(e.getPlayer()).players) {
                     if (!player.equals(e.getPlayer())) {
 
-                        ServerInfo a = e.getPlayer().getServer().getInfo();
+                        ServerInfo a = e.getServer().getInfo();
                         player.connect(a);
 
                         Message.sendLine(player);

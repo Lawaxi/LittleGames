@@ -9,6 +9,8 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.connection.Server;
 import net.md_5.bungee.api.plugin.Command;
 
+import java.util.ArrayList;
+
 public class PartyCommand extends Command {
 
     private static Bungeecore instance;
@@ -68,6 +70,7 @@ public class PartyCommand extends Command {
                     case 2:
                     {
                         leave(ps,1);
+                        sender.sendMessage("§a您已离开队伍");
                         break;
                     }
                 }
@@ -201,19 +204,21 @@ public class PartyCommand extends Command {
 
                 if(PartyUtils.playersParty.containsKey(ps)) {
                     if(!PartyUtils.playersParty.get(ps).leader.equals(ps))
+                    {
                         ps.sendMessage("§c您当前组队的队长不是你!");
+                        return;
+                    }
                 }
                 else if(PartyUtils.playersParty.containsKey(pr))
                 {
                     ps.sendMessage("§c对方已经在一个队伍中了!");
+                    return;
                 }
-                else {
 
-                    if(PartyInvite.sendInvite(ps, pr))
-                        ps.sendMessage("§a组队邀请已发送");
-                    else
-                        ps.sendMessage("§c组队邀请发送失败，您或对方有已经挂起的邀请");
-                }
+                if(PartyInvite.sendInvite(ps, pr))
+                    ps.sendMessage("§a组队邀请已发送");
+                else
+                    ps.sendMessage("§c组队邀请发送失败，您或对方有已经挂起的邀请");
             }
             else
             {
@@ -229,14 +234,14 @@ public class PartyCommand extends Command {
         if(mode==1){
             Party party = PartyUtils.playersParty.get(ps);
             party.players.remove(ps);
-            for(ProxiedPlayer player:party.players){
-                player.sendMessage("§7"+ps.getName()+"§6 离开了队伍");
-            }
+            party.sendBoardMessage("§7"+ps.getName()+"§6 离开了队伍");
+            PartyUtils.playersParty.remove(ps);
+
         }
         else {
             Party party = PartyUtils.playersParty.get(ps);
             party.sendBoardMessage("§c队长 §7" + ps.getName() + "§c 解散了队伍.");
-            for (ProxiedPlayer player : party.players) {
+            for (ProxiedPlayer player : (ArrayList<ProxiedPlayer>)party.players.clone()) {
                 party.players.remove(player);
                 PartyUtils.playersParty.remove(player);
             }
