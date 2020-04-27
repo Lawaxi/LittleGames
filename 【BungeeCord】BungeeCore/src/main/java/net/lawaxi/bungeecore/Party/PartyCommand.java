@@ -6,7 +6,6 @@ import net.lawaxi.bungeecore.Player.PlayerUtils;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.connection.Server;
 import net.md_5.bungee.api.plugin.Command;
 
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class PartyCommand extends Command {
 
     public PartyCommand(Bungeecore instance) {
 
-        super("party",null,"p");
+        super("party",null,"p","组队");
         this.instance = instance;
     }
 
@@ -189,6 +188,67 @@ public class PartyCommand extends Command {
                     sender.sendMessage("§c您不在队伍中或者您就是组长");
                 break;
             }
+            case "tphere":{
+                if(PartyUtils.getParty(ps)!=1)
+                    ps.sendMessage("§c您不在队伍中或者不是队伍的队长");
+                else
+                {
+                    boolean is = false;
+                    for(ProxiedPlayer player : PartyUtils.playersParty.get(ps).players)
+                    {
+                        if(!player.getServer().getInfo().equals(ps.getServer().getInfo())) {
+
+                            player.connect(ps.getServer().getInfo());
+                            ps.sendMessage("§a将 §7"+player.getName()+"§a 传送到 §2"+ps.getServer().getInfo().getName());
+
+                            Message.sendLine(player);
+                            player.sendMessage("§a组长将您传送至 §2"+ps.getServer().getInfo().getName());
+                            Message.sendLine(player);
+
+                            is=true;
+                        }
+                    }
+
+                    if(!is)
+                        ps.sendMessage("§6队伍内所有人都在 §2"+ps.getServer().getInfo().getName()+"§6 无需传送");
+                }
+                break;
+
+            }
+            case "changeleader":
+            {
+                if(PartyUtils.getParty(ps)!=1)
+                    ps.sendMessage("§c您不在队伍中或者不是队伍的队长");
+                else
+                {
+                    if(args.length==1)
+                        ps.sendMessage("§c请输入要转移权限的组员名");
+                    else
+                    {
+                        if(args[1].equalsIgnoreCase(ps.getName()))
+                            ps.sendMessage("§c您无需将权限转给自己");
+                        else
+                        {
+                            ProxiedPlayer player = PlayerUtils.searchPlayer(args[1]);
+                            if(player!=null)
+                            {
+                                if(PartyUtils.playersParty.get(ps).players.contains(player))
+                                {
+                                    PartyUtils.playersParty.get(ps).leader = player;
+                                    ps.sendMessage("§a成功将权限转让给新组长 §7"+args[1]);
+                                    PartyUtils.playersParty.get(ps).sendBoardMessage("§6组长变动为 §7"+args[1],ps);
+
+                                    break;
+                                }
+                            }
+
+
+                            ps.sendMessage("§c您无需将权限转给自己");
+                        }
+                    }
+                }
+                break;
+            }
         }
         Message.sendLine(ps);
 
@@ -266,13 +326,15 @@ public class PartyCommand extends Command {
         player.sendMessage("§a组队命令:");
         player.sendMessage("§e/p help §7- §b帮助");
         player.sendMessage("§e/p invite <玩家> §7- §b邀请玩家加入组队");
-        player.sendMessage("§e/p remove <玩家> §7- §9[队长]§b删除队伍中的一名玩家");
+        player.sendMessage("§e/p remove <组员> §7- §9[队长]§b删除队伍中的一名玩家");
         player.sendMessage("§e/p setname <名称> §7- §9[队长]§b设定队伍名称");
         player.sendMessage("§e/p setcolor <颜色> §7- §9[队长]§b设定队伍名称颜色");
         player.sendMessage("§e/p list §7- §b查看队伍信息");
+        player.sendMessage("§e/p changeleader <组员> §7- §9[队长]§b转移队长权限给其他组员");
         player.sendMessage("§e/p leave §7- §b离开队伍");
         player.sendMessage("§e/p disband §7- §9[队长]§b解散队伍");
         player.sendMessage("§e/p warp §7- §b传送至队长所在服务器");
+        player.sendMessage("§e/p tphere §7- §9[队长]§b将其他玩家传送到自己所在地");
         player.sendMessage("§e/p accept §7- §b接受收到的组队邀请");
         player.sendMessage("§e/p deny §7- §b拒绝收到的组队邀请");
     }

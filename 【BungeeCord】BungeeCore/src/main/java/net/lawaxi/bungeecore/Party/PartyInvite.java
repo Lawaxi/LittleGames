@@ -2,9 +2,13 @@ package net.lawaxi.bungeecore.Party;
 
 import net.lawaxi.bungeecore.Player.Message;
 import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class PartyInvite {
 
@@ -16,7 +20,29 @@ public class PartyInvite {
         this.to = to;
 
 
+        PartyInvite t = this;
         //60秒自动取消
+        new Timer().schedule(
+                new TimerTask(){
+                    @Override
+                    public void run() {
+                        if(invites.contains(t))
+                        {
+                            Message.sendLine(t.from);
+                            t.from.sendMessage("§e60秒时间已到，传送请求自动取消");
+                            Message.sendLine(t.from);
+
+                            Message.sendLine(t.to);
+                            t.to.sendMessage("§e60秒时间已到，传送请求自动取消");
+                            Message.sendLine(t.to);
+
+                            invites.remove(t);
+
+                        }
+                    }
+                }
+        ,60000);
+
     }
 
     public static ArrayList<PartyInvite> invites = new ArrayList<>();
@@ -31,7 +57,7 @@ public class PartyInvite {
 
             TextComponent textComponent = new TextComponent("§6点击这里§e以加入组队!邀请的有效时间为60秒!");
             textComponent.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/p accept"));
-            textComponent.setInsertion("相对应输入/p accept");
+            textComponent.setHoverEvent( new HoverEvent( HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§6相当于输入§e/p accept").create() ) );
             reciever.sendMessage(textComponent);
             Message.sendLine(reciever);
 
@@ -45,7 +71,10 @@ public class PartyInvite {
         int index = searchInvite(player);
 
         if(index==-1)
+        {
             player.sendMessage("§c您没有待接受的邀请");
+            return false;
+        }
         else
         {
             ProxiedPlayer from = invites.get(index).from;
@@ -53,16 +82,15 @@ public class PartyInvite {
             if(!PartyUtils.playersParty.containsKey(from))
                 PartyUtils.playersParty.put(from,new Party(from,"组队"));
 
-            from.sendMessage("§7"+player.getName()+" §a接受了您的邀请");
             PartyUtils.playersParty.get(from).players.add(player);
-            PartyUtils.playersParty.get(from).sendBoardMessage("§7"+player.getName()+" §6加入了组队");
+            PartyUtils.playersParty.get(from).sendBoardMessage("§7"+player.getName()+" §6加入了组队",player);
             PartyUtils.playersParty.put(player,PartyUtils.playersParty.get(from));
+
+            player.sendMessage("§a你成功加入到队伍§f "+PartyUtils.playersParty.get(from).name);
 
             invites.remove(index);
             return true;
         }
-
-        return false;
     }
 
     public static boolean deny(ProxiedPlayer player){
@@ -70,7 +98,10 @@ public class PartyInvite {
         int index = searchInvite(player);
 
         if(index==-1)
+        {
             player.sendMessage("§c您没有待拒绝的邀请");
+            return false;
+        }
         else
         {
             ProxiedPlayer from = invites.get(index).from;
@@ -84,8 +115,6 @@ public class PartyInvite {
             invites.remove(index);
             return true;
         }
-
-        return false;
     }
 
     private static int searchInvite(ProxiedPlayer player){
