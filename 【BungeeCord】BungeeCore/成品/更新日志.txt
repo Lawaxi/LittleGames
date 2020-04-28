@@ -3,3 +3,17 @@ party
 
 1.1.2
 friend
+
+
+------------------------------------------------
+可以配合code使用
+code是金币系统和奖品码功能
+
+/money
+/addcode 数量 钱（需要在bungee中添加"addcode"权限）
+/code xxxx 兑换
+
+金币储存在与bungee服务端目录的父目录下 Game/moneys.yml 中
+Bukkit Spigot子服可以调用其数据
+
+code的源码太简单了 十分钟就做完了 就不放出来了
