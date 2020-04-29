@@ -13,7 +13,9 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -39,9 +41,11 @@ public class antimc implements Listener {
         if(!e.getPlayer().getGameMode().equals(GameMode.CREATIVE))
             e.setCancelled(true);
     }
+
     @EventHandler
-    private static void onOpenInventory(InventoryOpenEvent e){
-        if(!e.getPlayer().getGameMode().equals(GameMode.CREATIVE))
+    public void onInventoryClick(InventoryOpenEvent e)
+    {
+        if(e.getPlayer().getGameMode().equals(GameMode.SURVIVAL))
             e.setCancelled(true);
     }
 

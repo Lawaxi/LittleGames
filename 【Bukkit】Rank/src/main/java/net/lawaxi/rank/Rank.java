@@ -364,11 +364,12 @@ public final class Rank extends JavaPlugin {
                     .replace("%level%",String.valueOf(getLevel(player)))
             ).setScore(a.size()-a.indexOf(b));
         }
-        player.setScoreboard(scoreboard);
 
 
+        /*
         Objective o = scoreboard.registerNewObjective("ls", "dummy");
         o.setDisplaySlot(DisplaySlot.BELOW_NAME);
-        o.setDisplayName(Rank.ranks.getString("types."+Rank.playerranks.get(player)+"."));
+        o.getScore(player.getName()).setScore(getLevel(player));*/
+        player.setScoreboard(scoreboard);
     }
 }

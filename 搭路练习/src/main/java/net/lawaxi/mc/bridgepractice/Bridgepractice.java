@@ -32,7 +32,6 @@ public final class Bridgepractice extends JavaPlugin {
         else
             rank = (Rank) Bukkit.getPluginManager().getPlugin("Rank");
 
-
         instance = this;
         Bukkit.getPluginManager().registerEvents(new antimc(),this);
         Bukkit.getPluginManager().registerEvents(new others(),this);
