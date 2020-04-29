@@ -15,6 +15,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +32,18 @@ public class others implements Listener {
             onBlock.end(e.getPlayer(),a);
         else if(a.getBlock().getType().equals(Material.getMaterial(Bridgepractice.config.getString("block.return"))))
             onBlock.return1(e.getPlayer(),a);
+    }
+
+    @EventHandler
+    private static void onSneek(PlayerToggleSneakEvent e){
+        if(!e.isSneaking())
+        {
+            Location a =e.getPlayer().getLocation();
+            a.setY(a.getY()-1);
+            if(a.getBlock().getType().equals(Material.getMaterial(Bridgepractice.config.getString("block.teleport"))))
+                onBlock.teleport(e.getPlayer(),a);
+        }
+
     }
 
     @EventHandler

@@ -5,18 +5,20 @@ import net.lawaxi.mc.bridgepractice.utils.PlayerUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
@@ -49,15 +51,56 @@ public class antimc implements Listener {
             e.setCancelled(true);
     }
 
+    /*
+    @EventHandler
+    private static void onPlaceWater(PlayerInteractEvent e){
+
+        if(!e.getPlayer().getGameMode().equals(GameMode.CREATIVE) && e.hasItem()) {
+            if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK) &&
+                    (e.getItem().getType().equals(Material.WATER_BUCKET) || e.getItem().getType().equals(Material.LAVA_BUCKET))) {
+                {
+                    new BukkitRunnable(){
+                        @Override
+                        public void run() {
+
+                            Integer[] a ={-1,1};
+                            for(int x:a){
+                                for(int y:a){
+                                    for(int z:a)
+                                    {
+                                        Block b=e.getClickedBlock().getLocation().add(x,y,z).getBlock();
+                                        if(b.getType().equals(Material.WATER))
+                                            b.setType(Material.AIR);
+                                    }
+                                }
+                            }
+                        }
+                    }.runTaskLater(Bridgepractice.instance,20);
+                }
+            }
+        }
+    }*/
+
 
     @EventHandler
     private static void onDamaged(EntityDamageEvent e){
         if(e.getEntity() instanceof Player) {
             if(e.getEntity().getLocation().getY()>0) {
                 if (e.getDamage() >= 20)
+                {
                     ((Player) e.getEntity()).sendTitle(
                             Bridgepractice.config.getString("messages.damaged2.title").replace("%n%", String.valueOf(e.getDamage())),
                             Bridgepractice.config.getString("messages.damaged2.sub").replace("%n%", String.valueOf(e.getDamage())), 20, 40, 20);
+
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            e.getEntity().teleport(PlayerUtils.location.get(e.getEntity()));
+                            PlayerUtils.clearBlocks((ArrayList<Location>)PlayerUtils.playersblock.get(e.getEntity()).clone());
+                            this.cancel();
+                        }
+                    }.runTask(Bridgepractice.instance);
+                }
                 else {
                     ((Player) e.getEntity()).sendTitle(
                             Bridgepractice.config.getString("messages.damaged1.title").replace("%n%", String.valueOf(e.getDamage())),

@@ -3,12 +3,13 @@ package net.lawaxi.mc.bridgepractice;
 import net.lawaxi.mc.bridgepractice.listeners.antimc;
 import net.lawaxi.mc.bridgepractice.listeners.others;
 import net.lawaxi.mc.bridgepractice.utils.PlayerUtils;
+import net.lawaxi.mc.bridgepractice.utils.Villagers;
 import net.lawaxi.rank.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Bridgepractice extends JavaPlugin {
@@ -32,10 +33,12 @@ public final class Bridgepractice extends JavaPlugin {
         else
             rank = (Rank) Bukkit.getPluginManager().getPlugin("Rank");
 
+        //事件
         instance = this;
         Bukkit.getPluginManager().registerEvents(new antimc(),this);
         Bukkit.getPluginManager().registerEvents(new others(),this);
 
+        //配置
         saveDefaultConfig();
         config = getConfig();
 
@@ -54,6 +57,19 @@ public final class Bridgepractice extends JavaPlugin {
                 config.getDouble("map.joinlocation.x"),
                 config.getDouble("map.joinlocation.y"),
                 config.getDouble("map.joinlocation.z"));
+
+        //记录盔甲架地点
+        for(World world:Bukkit.getWorlds()){
+            for(Entity e:world.getEntities()){
+                if(e instanceof ArmorStand)
+                {
+                    Villagers.spawnpoint.add(e.getLocation());
+                    e.remove();
+                }
+            }
+        }
+        Villagers.spawnAllVillage();
+
     }
 
     @Override
@@ -64,25 +80,23 @@ public final class Bridgepractice extends JavaPlugin {
         for(Player player:Bukkit.getOnlinePlayers()){
             PlayerUtils.clearBlocks(PlayerUtils.playersblock.get(player));
         }
+
+        getLogger().warning("正在恢复盔甲架，请勿强制关闭！");
+
+        for(World world:Bukkit.getWorlds()){
+            for(Entity e:world.getEntities()){
+                if(e instanceof Villager)
+                    e.remove();
+            }
+        }
+        Villagers.spawnAllVillage();
+
+        for(Location a:Villagers.spawnpoint){
+            a.getWorld().spawnEntity(a, EntityType.ARMOR_STAND);
+        }
     }
 
     public static void addExp(Player player,int exp){
         rank.addExp(player,exp);
     }
-
-    /*
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if(command.getName().equalsIgnoreCase("setlobby")){
-            if(sender instanceof Player)
-            {
-                config.set("map.joinlocation.world",((Player) sender).getLocation().getWorld().getName());
-                config.set("map.joinlocation.x",((Player) sender).getLocation().getX());
-                config.set("map.joinlocation.y",((Player) sender).getLocation().getY());
-                config.set("map.joinlocation.z",((Player) sender).getLocation().getZ());
-                saveConfig();
-            }
-        }
-        return super.onCommand(sender, command, label, args);
-    }*/
 }

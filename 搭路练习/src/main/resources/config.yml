@@ -28,7 +28,14 @@ messages:
     sub: §b%n% 方块/秒
   dead1: "%player% §f掉入虚空"
   dead2: "%player% §f被 %killer% §f推下了虚空"
+  villager: "§6靶子"
 blockskin:
   '0': SANDSTONE
-  '10': WOOL
-  '20': WOOL:8
+  '5': WOOL:8
+  '10': WOOL:1
+  '20': WOOL:6
+  '50': WOOL:9
+  '100': WOOL:1
+  '200': WOOL:14
+  '500': WOOL:2
+  '1000': DIAMOND_BLOCK

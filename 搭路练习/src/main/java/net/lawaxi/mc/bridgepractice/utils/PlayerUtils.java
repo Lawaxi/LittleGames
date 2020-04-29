@@ -1,9 +1,6 @@
 package net.lawaxi.mc.bridgepractice.utils;
 
 import net.lawaxi.mc.bridgepractice.Bridgepractice;
-import net.lawaxi.mc.bridgepractice.Events.AfterInventoryEvent;
-import net.lawaxi.mc.bridgepractice.Events.BeforeInventorizeEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -41,7 +38,6 @@ public class PlayerUtils {
 
     public static void giveBlocks(Player player){
 
-        Bukkit.getPluginManager().callEvent(new BeforeInventorizeEvent(player));
         for(int i=0;i<9;i++)
             player.getInventory().setItem(i,null);
 
@@ -54,8 +50,6 @@ public class PlayerUtils {
                 return;
             }
         }
-
-        Bukkit.getPluginManager().callEvent(new AfterInventoryEvent(player));
 
     }
 

@@ -14,9 +14,11 @@ import java.util.ArrayList;
 public class onBlock {
 
     public static void start(Player player, Location location) {
+
         location.setX(utils.getDouble(location.getX()));
         location.setY(utils.getDouble(location.getY() + 1));
         location.setZ(utils.getDouble(location.getZ()));
+
         if (!PlayerUtils.location.get(player).equals(location)) {
             PlayerUtils.location.replace(player, location);
             PlayerUtils.giveBlocks(player);
@@ -46,6 +48,8 @@ public class onBlock {
                             .replace("%y%", String.valueOf(location.getY()))
                             .replace("%z%", String.valueOf(location.getZ())), 20, 40, 20);
         }
+
+        Villagers.spawnVillage(player.getLocation());
     }
 
 
@@ -74,29 +78,23 @@ public class onBlock {
 
     public static void teleport(Player player, Location location){
 
-
         Location location1 = location.clone();
 
-        if(player.isSneaking()) {
-
-            //先向上查找再向下查找
-
-            for (int i = 1; i < 20; i++) {
-                location1.setY(location.getY() + i);
-                if (location1.getBlock().getType().equals(Bridgepractice.config.get("block.teleport"))) {
-                    location1.setY(location1.getY() + 1);
-                    player.teleport(location1);
-                    return;
-                }
+        for (int i = 1; i < 50; i++) {
+            location1.setY(location.getY() + i);
+            if (location1.getBlock().getType().equals(Material.getMaterial(Bridgepractice.config.getString("block.teleport")))) {
+                location1.setY(location1.getY() + 1);
+                player.teleport(location1);
+                return;
             }
+        }
 
-            for (int i = 1; i < 20; i++) {
-                location1.setY(location.getY() - i);
-                if (location1.getBlock().getType().equals(Bridgepractice.config.get("block.teleport"))) {
-                    location1.setY(location1.getY() + 1);
-                    player.teleport(location1);
-                    return;
-                }
+        for (int i = 1; i < 50; i++) {
+            location1.setY(location.getY() - i);
+            if (location1.getBlock().getType().equals(Material.getMaterial(Bridgepractice.config.getString("block.teleport")))) {
+                location1.setY(location1.getY() + 1);
+                player.teleport(location1);
+                return;
             }
         }
 
