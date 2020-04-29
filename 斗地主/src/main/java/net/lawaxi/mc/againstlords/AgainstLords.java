@@ -5,6 +5,7 @@ import net.lawaxi.mc.againstlords.lisener.InventoryClose;
 import net.lawaxi.mc.againstlords.lisener.InventoryClick;
 import net.lawaxi.mc.againstlords.lisener.PlayerDropItem;
 import net.lawaxi.mc.againstlords.utils.*;
+import net.lawaxi.rank.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -24,7 +25,7 @@ public final class AgainstLords extends JavaPlugin {
     public static boolean isInGame = false;
     public static AgainstLords instance;
 
-    public static boolean useRank = false;
+    public static Rank rank;
 
     @Override
     public void onEnable() {
@@ -32,8 +33,10 @@ public final class AgainstLords extends JavaPlugin {
         //1.2.0更新前，Rank插件制作完毕，联动
         if(Bukkit.getPluginManager().getPlugin("Rank")!=null)
         {
-            useRank=true;
-            getLogger().info("成功连接 Rank 插件");
+            if(!(Bukkit.getPluginManager().getPlugin("Rank") instanceof Rank))
+                getLogger().info("您没有安装 Rank 插件，将不会有结束奖励");
+            else
+                rank = (Rank) Bukkit.getPluginManager().getPlugin("Rank");
         }
         else
             getLogger().info("您没有安装 Rank 插件，将不会有结束奖励");

@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="net.lawaxi:rank:1.1.1">
+  <library name="rank-1.3.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/rank-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/rank-1.3.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

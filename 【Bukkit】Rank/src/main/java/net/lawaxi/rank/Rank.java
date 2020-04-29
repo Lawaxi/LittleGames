@@ -10,13 +10,19 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.FileUtil;
 
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Logger;
 
 public final class Rank extends JavaPlugin {
@@ -31,11 +37,14 @@ public final class Rank extends JavaPlugin {
     public static Logger logger;
     public static Server server;
 
+    public static Rank instance;
+
     @Override
     public void onEnable() {
         // Plugin startup logic
         logger = getLogger();
         server = getServer();
+        instance = this;
 
         //注册事件
         getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
@@ -102,6 +111,7 @@ public final class Rank extends JavaPlugin {
 
         }
         levels = YamlConfiguration.loadConfiguration(level);
+
     }
 
     @Override
@@ -132,7 +142,7 @@ public final class Rank extends JavaPlugin {
             if(args.length==2){
                 Player player = server.getPlayer(args[0]);
                 if(player!=null) {
-                    utils.addExp(player, Integer.valueOf(args[1]));
+                    addExp(player, Integer.valueOf(args[1]));
                 }
                 else {
                     sender.sendMessage("§c玩家 " + args[0] + " 不在线!");
@@ -240,27 +250,18 @@ public final class Rank extends JavaPlugin {
                 }
 
                 //Chat
-                int level = utils.getLevel(player1);
+                int level = getLevel(player1);
 
-                    String display = "";
-                    for(int i=level;i>=0;i--)
-                    {
-                        if(levels.contains("types.display."+i))
-                        {
-                            display = levels.getString("types.display."+i).replace("%n%",String.valueOf(level));
-                            break;
-                        }
-                    }
-                    if(PlayerChat.level.containsKey(player1))
-                    {
-                        if(PlayerChat.level.get(player1).equals(display))
-                            return;
-                        else
-                            PlayerChat.level.replace(player1,display);
-                    }
+                String display = getLevelDisplay(level);
+                if(PlayerChat.level.containsKey(player1))
+                {
+                    if(PlayerChat.level.get(player1).equals(display))
+                        return;
                     else
-                        PlayerChat.level.put(player1,display);
-
+                        PlayerChat.level.replace(player1,display);
+                }
+                else
+                    PlayerChat.level.put(player1,display);
             }
         }
     }
@@ -274,5 +275,100 @@ public final class Rank extends JavaPlugin {
         {
 
         }
+    }
+
+    public static void addExp(Player player, int amount){
+
+        int level = Rank.levels.getInt("players."+player.getName())/Rank.levels.getInt("types.exp.each");
+        if(level<Rank.levels.getInt("types.exp.max"))
+        {
+            if(amount>Rank.levels.getInt("types.exp.max")-level)
+            {
+                amount=Rank.levels.getInt("types.exp.max")-level;
+            }
+            int exp = Rank.levels.getInt("players."+player.getName())+amount;
+            Rank.levels.set("players."+player.getName(),exp);
+            Rank.saveLevels();
+
+            int level2 = exp/Rank.levels.getInt("types.exp.each");
+            if(level2 != level) {
+                Rank.reloadPlayerLevels(player.getName());
+
+                player.sendMessage(replace(replace(replace((List<String>) Rank.config.getList("messages.addexp2")
+                        ,"%1%",String.valueOf(amount))
+                        ,"%2%",String.valueOf(level2))
+                        ,"%3%",String.valueOf((level2+1)*Rank.levels.getInt("types.exp.each")-exp))
+                        .toArray(new String[0]));
+            }
+            else
+            {
+                player.sendMessage(replace(replace(replace((List<String>) Rank.config.getList("messages.addexp1")
+                        ,"%1%",String.valueOf(amount))
+                        ,"%2%",String.valueOf(level+1))
+                        ,"%3%",String.valueOf((level+1)*Rank.levels.getInt("types.exp.each")-exp))
+                        .toArray(new String[0]));
+            }
+        }
+        else
+        {
+            player.sendMessage(replace((List<String>) Rank.config.getList("messages.addexp3"),"%1%",String.valueOf(amount))
+                    .toArray(new String[0]));
+        }
+
+
+        reloadScoreboard(player);
+    }
+
+    private static List<String> replace(List<String> a ,String target,String replacement){
+        List<String> b = new ArrayList<>();
+        for(String member : a)
+        {
+            b.add(member.replace(target,replacement));
+        }
+        return b;
+    }
+
+    public static int getExp(Player player){
+        return Rank.levels.getInt("players."+player.getName());
+    }
+
+    public static int getLevel(Player player){
+        return getExp(player)/Rank.levels.getInt("types.exp.each");
+    }
+
+    public static String getLevelDisplay(int level){
+        String display = "";
+        for(int i=level;i>=0;i--)
+        {
+            if(Rank.levels.contains("types.display."+i))
+            {
+                display = Rank.levels.getString("types.display."+i).replace("%n%",String.valueOf(level));
+                break;
+            }
+        }
+        return display;
+    }
+
+    public static void reloadScoreboard(Player player){
+        ScoreboardManager manager = Bukkit.getScoreboardManager();
+        Scoreboard scoreboard = manager.getNewScoreboard();
+        Objective objective = scoreboard.registerNewObjective("sb", "dummy");
+        objective.setDisplayName(Rank.config.getString("scoreboard.title"));
+        objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+
+        ArrayList<String> a = (ArrayList<String> ) Rank.config.getList("scoreboard.list");
+        for(String b : a)
+        {
+            objective.getScore(b
+                    .replace("%rank%",Rank.ranks.getString("types."+Rank.playerranks.get(player)+".name"))
+                    .replace("%level%",String.valueOf(getLevel(player)))
+            ).setScore(a.size()-a.indexOf(b));
+        }
+        player.setScoreboard(scoreboard);
+
+
+        Objective o = scoreboard.registerNewObjective("ls", "dummy");
+        o.setDisplaySlot(DisplaySlot.BELOW_NAME);
+        o.setDisplayName(Rank.ranks.getString("types."+Rank.playerranks.get(player)+"."));
     }
 }

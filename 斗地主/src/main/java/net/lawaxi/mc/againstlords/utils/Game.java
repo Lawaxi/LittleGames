@@ -5,7 +5,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
-import net.lawaxi.rank.utils;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -225,7 +224,7 @@ public class Game {
 
 
         //Rank游戏奖励
-        if(AgainstLords.useRank)
+        if(AgainstLords.rank!=null)
         {
             for(Player player : Bukkit.getOnlinePlayers())
             {
@@ -236,7 +235,7 @@ public class Game {
                     exp =AgainstLords.config.getInt("levelreward.win");
 
                 if (exp != 0)
-                    utils.addExp(player, exp);
+                    AgainstLords.rank.addExp(player, exp);
             }
         }
     }

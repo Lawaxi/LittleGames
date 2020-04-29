@@ -29,7 +29,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.google.guava:guava:21.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.google.code.gson:gson:2.8.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.yaml:snakeyaml:1.19" level="project" />
-    <orderEntry type="library" exported="" name="rank-1.1.2" level="project" />
-    <orderEntry type="library" exported="" name="ActionBarAPI-1.5.4" level="project" />
+    <orderEntry type="library" name="ActionBarAPI-1.5.4" level="project" />
+    <orderEntry type="library" exported="" name="rank-1.3.0" level="project" />
   </component>
 </module>

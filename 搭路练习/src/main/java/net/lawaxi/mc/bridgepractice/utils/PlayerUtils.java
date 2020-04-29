@@ -1,7 +1,6 @@
 package net.lawaxi.mc.bridgepractice.utils;
 
 import net.lawaxi.mc.bridgepractice.Bridgepractice;
-import net.lawaxi.rank.utils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -39,7 +38,7 @@ public class PlayerUtils {
 
     public static void giveBlocks(Player player){
         player.getInventory().clear();
-        for(int i=utils.getLevel(player);i>=0;i--)
+        for(int i=Bridgepractice.rank.getLevel(player);i>=0;i--)
         {
             if(Bridgepractice.config.contains("blockskin."+String.valueOf(i))){
 

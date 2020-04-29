@@ -9,6 +9,6 @@ public final class PlayerJoin implements Listener {
     public void onPlayerJoin(org.bukkit.event.player.PlayerJoinEvent event)
     {
         Rank.reloadPlayerLevels(event.getPlayer().getName());
-        utils.reloadScoreboard(event.getPlayer());
+        Rank.reloadScoreboard(event.getPlayer());
     }
 }

@@ -1,5 +1,5 @@
 name: BridgePractice
-version: 1.0.4
+version: 1.0.5
 main: net.lawaxi.mc.bridgepractice.Bridgepractice
 prefix: BridgePractice
 depend: [Rank]

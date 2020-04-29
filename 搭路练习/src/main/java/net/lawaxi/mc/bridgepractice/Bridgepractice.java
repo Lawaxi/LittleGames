@@ -3,17 +3,13 @@ package net.lawaxi.mc.bridgepractice;
 import net.lawaxi.mc.bridgepractice.listeners.antimc;
 import net.lawaxi.mc.bridgepractice.listeners.others;
 import net.lawaxi.mc.bridgepractice.utils.PlayerUtils;
-import net.lawaxi.rank.utils;
+import net.lawaxi.rank.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.ArrayList;
 
 public final class Bridgepractice extends JavaPlugin {
 
@@ -21,14 +17,21 @@ public final class Bridgepractice extends JavaPlugin {
     public static Location joinLocation;
 
     public static Bridgepractice instance;
-
+    public static Rank rank;
 
     @Override
     public void onEnable() {
         // Plugin startup logic
 
+
+        //读取Rank插件
         if(Bukkit.getPluginManager().getPlugin("Rank") == null)
             Bukkit.getPluginManager().disablePlugin(this);
+        else if(! (Bukkit.getPluginManager().getPlugin("Rank") instanceof Rank))
+            Bukkit.getPluginManager().disablePlugin(this);
+        else
+            rank = (Rank) Bukkit.getPluginManager().getPlugin("Rank");
+
 
         instance = this;
         Bukkit.getPluginManager().registerEvents(new antimc(),this);
@@ -65,7 +68,7 @@ public final class Bridgepractice extends JavaPlugin {
     }
 
     public static void addExp(Player player,int exp){
-        utils.addExp(player,exp);
+        rank.addExp(player,exp);
     }
 
     /*
