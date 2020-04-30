@@ -89,7 +89,6 @@ public final class Bridgepractice extends JavaPlugin {
                     e.remove();
             }
         }
-        Villagers.spawnAllVillage();
 
         for(Location a:Villagers.spawnpoint){
             a.getWorld().spawnEntity(a, EntityType.ARMOR_STAND);
