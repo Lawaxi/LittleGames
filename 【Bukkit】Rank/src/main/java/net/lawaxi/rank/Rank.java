@@ -315,8 +315,8 @@ public final class Rank extends JavaPlugin {
                     .toArray(new String[0]));
         }
 
-
-        reloadScoreboard(player);
+        if(config.getBoolean("allow-scoreboard"))
+            reloadScoreboard(player);
     }
 
     private static List<String> replace(List<String> a ,String target,String replacement){
