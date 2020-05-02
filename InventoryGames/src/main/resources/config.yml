@@ -1,0 +1,92 @@
+Minesweeper:
+  title: §6§l扫雷
+  inventory:
+    size: 54
+    mine:
+      average: 8
+      delta: 1
+  display:
+    empty:
+      item: STAINED_GLASS_PANE:3
+      name: 左键标记 右键扫雷
+    banner:
+      0:
+        item: BANNER:15
+        name: "0"
+      1:
+        item: BANNER:7
+        name: "1"
+      2:
+        item: BANNER:4
+        name: "2"
+      3:
+        item: BANNER:10
+        name: "3"
+      4:
+        item: BANNER:2
+        name: "4"
+      5:
+        item: BANNER:9
+        name: "5"
+      6:
+        item: BANNER:13
+        name: "6"
+      7:
+        item: BANNER:11
+        name: "7"
+      8:
+        item: BANNER:1
+        name: "8"
+    mine:
+      item: TNT
+      name: 地雷
+  messages:
+    win: §a你扫掉了所有的雷，共用时%time%
+    failed: §c你被雷炸死了，共用时%time%
+    breakrecord: §6一个新的服务器记录产生了!
+    broad: §6恭喜 §f%player% §6在扫雷游戏中获胜啦! 用时%time%! (服务器记录%record%)
+  record: 99999999
+JGG:
+  title: §d§l九宫格比赛
+  inventory:
+    size: 45
+    slot:
+      - 12
+      - 13
+      - 14
+      - 21
+      - 22
+      - 23
+      - 30
+      - 31
+      - 32
+    duty: 10
+  messages:
+    request: §f%player% §d发起了一个九宫格比赛，点击加入!
+    requesthover: §5点击加入
+    already: §c您发起的挑战还没有玩家加入
+    accept: §f%player% §a加入了你的比赛
+    quit: §f%player% §c退出了比赛，比赛中止!
+    noduty: §c没有轮到您!
+    win: §a你赢得了比赛!
+    failed: §c你输掉了比赛!
+    draw: §a平局!
+    broad: §f%win% §d在与§f %failed% §d的比赛中取得了胜利，共用%n%回合!
+    broad2: §f%2% §d与 §f%1% §d在比赛中难分胜负，共用%n%回合!
+  display:
+    none:
+      item: STAINED_GLASS_PANE:7
+      name: 待选择
+    player1:
+      item: STAINED_GLASS_PANE:11
+      name: 蓝
+    player2:
+      item: STAINED_GLASS_PANE:14
+      name: §c红
+    finish1:
+      item: STAINED_GLASS:11
+      name: §b蓝
+    finish2:
+      item: STAINED_GLASS:14
+      name: §c红
+    dutyname: §d当前轮到：§7%player%

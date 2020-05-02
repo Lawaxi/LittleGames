@@ -1,0 +1,12 @@
+name: InventoryGames
+version: ${project.version}
+main: net.lawaxi.mc.minesweeper.InventoryGames
+prefix: InventoryGames
+authors: [Lawaxi]
+commands:
+  ms:
+    usage: /ms
+    description: 开始扫雷
+  jgg:
+    usage: /jgg
+    description: 发起一个九宫格邀请或者加入邀请
